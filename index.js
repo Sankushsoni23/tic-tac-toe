@@ -1,39 +1,36 @@
-//add event listerner to dom content loaded event , we add js in head of html this js processed before any html on the html page
-// by event listerner ->html is processed by brower and we work with it
-window.addEventListener('DomContentLoaded', ()=>{
-    const tiles =Array.from(document.querySelector('tile')); // for the tiles we are wrapping  this around with the array.from
-    const playerDisplay =Array.from(document.querySelector('.display-player'));
-    const resetButton =Array.from(document.querySelector('.reset'));
-    const announcer =Array.from(document.querySelector('.announcer'));
+window.addEventListener('DOMContentLoaded', () => {
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+    const playerDisplay = document.querySelector('.display-player');
+    const resetButton = document.querySelector('#reset');
+    const announcer = document.querySelector('.announcer');
 
-    //create 9 empty string in an array
-   let board =['' ,'', '' ,'' , '' ,'' ,'' ,'' ,'' ];
-   let currentPlayer ='X';//store current player which is "X" or "O"
-   let isGameActive =true;
-  
-   //three end game result 
-   const PLAYERX_WON ='PLAYERX_WON';
-   const PLAYERO_WON ='PLAYERO_WON';
-   const TIE ='TIE';
-  /*
-   Indexes within the board
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let currentPlayer = 'X';
+    let isGameActive = true;
+
+    const PLAYERX_WON = 'PLAYERX_WON';
+    const PLAYERO_WON = 'PLAYERO_WON';
+    const TIE = 'TIE';
+
+
+    /*
+        Indexes within the board
         [0] [1] [2]
         [3] [4] [5]
         [6] [7] [8]
-  */
-     //winning condition and every condition show each line 
-        const winningConditions = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
+    */
 
-        //function work when click on index show on ui
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
     function handleResultValidation() {
         let roundWon = false;
         for (let i = 0; i <= 7; i++) {
@@ -123,7 +120,5 @@ window.addEventListener('DomContentLoaded', ()=>{
         tile.addEventListener('click', () => userAction(tile, index));
     });
 
-    
-
-    resetButton.addEventListener('click' ,resetBoard);
+    resetButton.addEventListener('click', resetBoard);
 });
